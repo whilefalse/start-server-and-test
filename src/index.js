@@ -70,9 +70,8 @@ function waitAndRun ({ start, url, runFn, namedArguments }) {
               }
             }
           })
-          // Give the server 5 seconds to close before hard-killing
-          return new Promise(resolve => setTimeout(() => resolve, 5000));
         })
+        .then(() => Promise.delay(5000))
         .then(() => {
           debug('stopping server')
           server.kill()
