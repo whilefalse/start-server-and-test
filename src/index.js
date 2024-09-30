@@ -59,7 +59,9 @@ function waitAndRun ({ start, url, runFn, namedArguments }) {
           debug('stopping child processes')
           children.forEach(child => {
             try {
-              process.kill(child.PID, 'SIGINT')
+              console.log('killing child process', child.PID)
+              process.kill(child.PID, 'SIGTERM')
+              console.log('killed child process', child.PID)
             } catch (e) {
               if (e.code === 'ESRCH') {
                 console.log(
