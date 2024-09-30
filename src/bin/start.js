@@ -24,7 +24,9 @@ if (!namedArguments.expect) {
 
 utils.printArguments({ services, test, namedArguments })
 
-await Promise.startAndTest({ services, test, namedArguments }).catch(e => {
+await startAndTest({ services, test, namedArguments }).catch(e => {
+  console.log("error in start-server-and-test")
+  console.log(e)
   console.error(e)
   process.exit(1)
 })
