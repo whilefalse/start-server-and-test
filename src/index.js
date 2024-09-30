@@ -76,8 +76,9 @@ function waitAndRun ({ start, url, runFn, namedArguments }) {
         .then(() => Promise.delay(5000))
         .then(() => {
           debug('stopping server')
-          server.kill()
+          server.kill('SIGTERM')
         })
+        .then(() => Promise.delay(5000))
     }
   }
 
