@@ -60,6 +60,8 @@ function waitAndRun ({ start, url, runFn, namedArguments }) {
           children.forEach(child => {
             try {
               process.kill(child.PID, 'SIGINT')
+              // Give the server 5 seconds to close before hard-killing
+              return new Promise(resolve => setTimeout(() => resolve, 5000));
             } catch (e) {
               if (e.code === 'ESRCH') {
                 console.log(
